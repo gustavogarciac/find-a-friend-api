@@ -10,14 +10,14 @@ let petRepository: PetRepository
 let orgRepository: OrgRepository
 let sut: GetPetsByCityUseCase
 
-describe('Get Pets Use Case', () => {
+describe('Get Pets By City Use Case', () => {
   beforeEach(() => {
     orgRepository = new InMemoryOrgRepository()
     petRepository = new InMemoryPetRepository()
     sut = new GetPetsByCityUseCase(petRepository)
   })
 
-  it('should register a pet', async () => {
+  it('should get pets by city', async () => {
     const org = await orgRepository.create({
       name: 'Pet Inc',
       slug: 'pet-inc',

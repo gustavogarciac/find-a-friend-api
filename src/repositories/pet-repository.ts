@@ -1,4 +1,4 @@
-import { Pet, Prisma } from '@prisma/client'
+import { Pet, PetSize, PetType, Prisma } from '@prisma/client'
 
 export interface PetRepository {
   create({
@@ -9,4 +9,17 @@ export interface PetRepository {
     orgId: string
   }): Promise<Pet>
   getManyByCity(city: string): Promise<Pet[]>
+  getPets({
+    name,
+    energyLevel,
+    age,
+    type,
+    size,
+  }: {
+    name?: string
+    energyLevel?: number
+    age?: number
+    type?: PetType
+    size?: PetSize
+  }): Promise<Pet[]>
 }

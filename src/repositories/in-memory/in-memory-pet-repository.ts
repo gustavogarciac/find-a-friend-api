@@ -37,4 +37,44 @@ export class InMemoryPetRepository implements PetRepository {
 
     return items
   }
+
+  async getPets({
+    name,
+    energyLevel,
+    age,
+    type,
+    size,
+  }: {
+    name?: string
+    energyLevel?: number
+    age?: number
+    type?: string
+    size?: string
+  }) {
+    const items = this.items.filter((item) => {
+      if (name && !item.name.includes(name)) {
+        return false
+      }
+
+      if (energyLevel && item.energyLevel !== energyLevel) {
+        return false
+      }
+
+      if (age && item.age !== age) {
+        return false
+      }
+
+      if (type && item.type !== type) {
+        return false
+      }
+
+      if (size && item.size !== size) {
+        return false
+      }
+
+      return true
+    })
+
+    return items
+  }
 }

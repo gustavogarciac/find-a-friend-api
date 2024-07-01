@@ -1,4 +1,4 @@
-import { Prisma } from '@prisma/client'
+import { PetSize, PetType, Prisma } from '@prisma/client'
 import { prisma } from 'src/lib/prisma'
 
 import { PetRepository } from '../pet-repository'
@@ -31,6 +31,35 @@ export class PrismaPetRepository implements PetRepository {
         organization: {
           city,
         },
+      },
+    })
+
+    return pets
+  }
+
+  async getPets({
+    name,
+    energyLevel,
+    age,
+    type,
+    size,
+  }: {
+    name?: string
+    energyLevel?: number
+    age?: number
+    type?: PetType
+    size?: PetSize
+  }) {
+    const pets = await prisma.pet.findMany({
+      where: {
+        name: {
+          contains: name,
+          mode: 'insensitive',
+        },
+        energyLevel,
+        age,
+        type,
+        size,
       },
     })
 
