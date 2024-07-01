@@ -12,7 +12,9 @@ export async function createOrg(app: FastifyInstance) {
         tags: ['organizations'],
         body: z.object({
           name: z.string(),
-          password: z.string(),
+          password: z
+            .string()
+            .min(6, { message: 'Password must be at least 6 characters long' }),
           latitude: z.number(),
           longitude: z.number(),
           street: z.string(),
