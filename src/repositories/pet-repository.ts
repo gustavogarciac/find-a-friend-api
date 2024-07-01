@@ -8,4 +8,5 @@ export interface PetRepository {
     data: Prisma.PetCreateWithoutOrganizationInput
     orgId: string
   }): Promise<Pet>
+  getManyByCity(city: string): Promise<Pet[]>
 }

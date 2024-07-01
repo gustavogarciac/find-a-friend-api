@@ -41,10 +41,13 @@ export class RegisterPetUseCase {
 
     if (!org) throw new BadRequestError('Organization not found')
 
+    const fullAddress = `${org.street}, ${org.city}, ${org.state}, ${org.zip}`
+
     const pet = await this.petRepository.create({
       data: {
         age,
         bio,
+        address: fullAddress,
         energyLevel,
         imageUrl,
         name,

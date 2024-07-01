@@ -57,6 +57,7 @@ model Pet {
   name         String
   bio          String
   energyLevel  Int     @map("energy_level")
+  address      String
   age          Int
   type         PetType
   size         PetSize

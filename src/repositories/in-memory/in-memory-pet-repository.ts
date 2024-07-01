@@ -16,6 +16,7 @@ export class InMemoryPetRepository implements PetRepository {
     const item: Pet = {
       name: data.name,
       age: data.age,
+      address: data.address,
       type: data.type,
       bio: data.bio,
       energyLevel: data.energyLevel,
@@ -29,5 +30,11 @@ export class InMemoryPetRepository implements PetRepository {
     this.items.push(item)
 
     return item
+  }
+
+  async getManyByCity(city: string) {
+    const items = this.items.filter((item) => item.address.includes(city))
+
+    return items
   }
 }
