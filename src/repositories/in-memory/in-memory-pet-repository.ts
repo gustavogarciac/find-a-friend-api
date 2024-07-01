@@ -77,4 +77,12 @@ export class InMemoryPetRepository implements PetRepository {
 
     return items
   }
+
+  async getPetById(petId: string) {
+    const pet = this.items.filter((item) => item.id === petId)
+
+    if (!pet) return null
+
+    return pet[0]
+  }
 }

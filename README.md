@@ -4,7 +4,7 @@
 - [X] Deve ser possível realizar login como uma ORG
 - [X] Deve ser possível cadastrar um pet
 - [X] Deve ser possível listar todos os pets disponíveis para adoção em uma cidade
-- [ ] Deve ser possível filtrar pets por suas características
+- [X] Deve ser possível filtrar pets por suas características
 - [ ] Deve ser possível visualizar detalhes de um pet para adoção
 
 ### Regras de negócio

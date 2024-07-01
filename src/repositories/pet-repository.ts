@@ -22,4 +22,6 @@ export interface PetRepository {
     type?: PetType
     size?: PetSize
   }): Promise<Pet[]>
+
+  getPetById(petId: string): Promise<Pet | null>
 }
