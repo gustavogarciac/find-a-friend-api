@@ -10,7 +10,7 @@
 ### Regras de negócio
 
 - [ ] Uma ORG precisa ter um endereço e um número de WhatsApp
-- [ ] Um pet deve estar ligado a uma ORG
+- [X] Um pet deve estar ligado a uma ORG
 - [ ] Para uma ORG acessar a aplicação como admin, ela precisa estar logada
 - [ ] Para listar os pets, obrigatoriamente precisamos informar a cidade
 - [ ] O usuário que quer adotar, entrará em contato com a ORG via WhatsApp
