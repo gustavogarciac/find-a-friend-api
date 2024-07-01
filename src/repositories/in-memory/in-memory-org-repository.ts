@@ -31,4 +31,12 @@ export class InMemoryOrgRepository implements OrgRepository {
 
     return { orgId: id }
   }
+
+  async findBySlug(slug: string) {
+    const item = this.items.find((item) => item.slug === slug)
+
+    if (!item) return null
+
+    return item
+  }
 }

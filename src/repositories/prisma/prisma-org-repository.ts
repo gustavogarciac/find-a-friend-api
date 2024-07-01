@@ -15,4 +15,14 @@ export class PrismaOrgRepository implements OrgRepository {
 
     return { orgId: org.id }
   }
+
+  async findBySlug(slug: string) {
+    const org = await prisma.organization.findUnique({
+      where: {
+        slug,
+      },
+    })
+
+    return org
+  }
 }
