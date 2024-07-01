@@ -1,5 +1,7 @@
-import { OrgRepository } from 'src/repositories/org-repository'
-import { generateSlug } from 'src/utils/generate-slug'
+import { OrgRepository } from 'src/repositories/org-repository.js'
+import { generateSlug } from 'src/utils/generate-slug.js'
+
+import { BadRequestError } from '../errors/bad-request-error.js'
 
 interface CreateOrgUseCaseRequest {
   name: string
@@ -39,7 +41,11 @@ export class CreateOrgUseCase {
 
     const slugAlreadyExists = await this.orgRepository.findBySlug(slug)
 
-    if (slugAlreadyExists) throw new Error('Slug already exists')
+    if (slugAlreadyExists) throw new BadRequestError('Slug already exists')
+
+    const emailAlreadyInUse = await this.orgRepository.findByEmail(email)
+
+    if (emailAlreadyInUse) throw new BadRequestError('Email already in use')
 
     const { orgId } = await this.orgRepository.create({
       name,
