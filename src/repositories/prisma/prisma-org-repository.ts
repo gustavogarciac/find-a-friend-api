@@ -13,7 +13,7 @@ export class PrismaOrgRepository implements OrgRepository {
       },
     })
 
-    return { orgId: org.id }
+    return org
   }
 
   async findBySlug(slug: string) {
@@ -30,6 +30,16 @@ export class PrismaOrgRepository implements OrgRepository {
     const org = await prisma.organization.findUnique({
       where: {
         email,
+      },
+    })
+
+    return org
+  }
+
+  async findById(orgId: string) {
+    const org = await prisma.organization.findUnique({
+      where: {
+        id: orgId,
       },
     })
 

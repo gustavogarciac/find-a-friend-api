@@ -1,3 +1,5 @@
+import { Organization } from '@prisma/client'
+import { hash } from 'bcryptjs'
 import { OrgRepository } from 'src/repositories/org-repository.js'
 import { generateSlug } from 'src/utils/generate-slug.js'
 
@@ -5,6 +7,7 @@ import { BadRequestError } from '../errors/bad-request-error.js'
 
 interface CreateOrgUseCaseRequest {
   name: string
+  password: string
   latitude: number
   longitude: number
   street: string
@@ -18,7 +21,7 @@ interface CreateOrgUseCaseRequest {
 }
 
 interface CreateOrgUseCaseResponse {
-  orgId: string
+  org: Organization
 }
 
 export class CreateOrgUseCase {
@@ -28,6 +31,7 @@ export class CreateOrgUseCase {
     name,
     latitude,
     longitude,
+    password,
     street,
     city,
     state,
@@ -47,9 +51,12 @@ export class CreateOrgUseCase {
 
     if (emailAlreadyInUse) throw new BadRequestError('Email already in use')
 
-    const { orgId } = await this.orgRepository.create({
+    const passwordHash = await hash(password, 8)
+
+    const org = await this.orgRepository.create({
       name,
       slug,
+      passwordHash,
       longitude,
       latitude,
       street,
@@ -62,6 +69,6 @@ export class CreateOrgUseCase {
       website,
     })
 
-    return { orgId }
+    return { org }
   }
 }

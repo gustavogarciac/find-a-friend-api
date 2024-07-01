@@ -14,19 +14,20 @@ datasource db {
 }
 
 model Organization {
-  id        String @id @default(uuid())
-  name      String
-  slug      String @unique
-  latitude  Float
-  longitude Float
-  street    String
-  city      String
-  state     String
-  country   String
-  zip       String
-  phone     String
-  email     String @unique
-  website   String
+  id           String @id @default(uuid())
+  name         String
+  passwordHash String @map("password_hash")
+  slug         String @unique
+  latitude     Float
+  longitude    Float
+  street       String
+  city         String
+  state        String
+  country      String
+  zip          String
+  phone        String
+  email        String @unique
+  website      String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

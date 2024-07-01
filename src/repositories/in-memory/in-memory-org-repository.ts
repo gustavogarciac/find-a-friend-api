@@ -15,6 +15,7 @@ export class InMemoryOrgRepository implements OrgRepository {
     const item = {
       id,
       name: data.name,
+      passwordHash: data.passwordHash,
       slug,
       latitude: data.latitude,
       longitude: data.longitude,
@@ -32,7 +33,7 @@ export class InMemoryOrgRepository implements OrgRepository {
 
     this.items.push(item)
 
-    return { orgId: id }
+    return item
   }
 
   async findBySlug(slug: string) {
@@ -45,6 +46,14 @@ export class InMemoryOrgRepository implements OrgRepository {
 
   async findByEmail(email: string) {
     const item = this.items.find((item) => item.email === email)
+
+    if (!item) return null
+
+    return item
+  }
+
+  async findById(id: string) {
+    const item = this.items.find((item) => item.id === id)
 
     if (!item) return null
 
